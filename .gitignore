@@ -1,0 +1,28 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Next.js
+node_modules/
+.next/
+out/
+
+# Git history backup
+.git-backup/
+
+# Logs
+*.log
+
+# Local code backups
+*.backup.txt
