@@ -1,5 +1,7 @@
 
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = (
+  process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"
+).replace(/\/$/, "");
 
 export type IncidentStatus =
   | "Open"
@@ -36,20 +38,29 @@ async function request<T>(
   path: string,
   options: RequestInit = {}
 ): Promise<T> {
-  const response = await fetch(`${API_URL}${path}`, {
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-    cache: "no-store",
-  });
+  let response: Response;
+
+  try {
+    response = await fetch(`${API_URL}${path}`, {
+      ...options,
+      headers: {
+        "Content-Type": "application/json",
+        ...options.headers,
+      },
+      cache: "no-store",
+    });
+  } catch {
+    throw new Error(
+      "Unable to connect to the backend. Check the API URL, server status, and CORS configuration."
+    );
+  }
 
   if (!response.ok) {
     let message = `API error: ${response.status}`;
 
     try {
       const error = await response.json();
+
       if (typeof error.detail === "string") {
         message = error.detail;
       }
@@ -93,7 +104,11 @@ export async function updateIncident(
 
 export async function analyseSavedIncident(
   id: number
-): Promise<{ status: string; incident_id: number; answer: string }> {
+): Promise<{
+  status: string;
+  incident_id: number;
+  answer: string;
+}> {
   return request(`/api/incidents/${id}/analyse`, {
     method: "POST",
   });
