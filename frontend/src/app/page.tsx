@@ -4,12 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import IncidentManager from "./IncidentManager";
 import { getIncidents, type Incident } from "@/lib/api";
 
-const API_URL = (
-  process.env.NEXT_PUBLIC_API_URL ||
-  (process.env.NODE_ENV === "production"
-    ? "https://itops-ai.onrender.com"
-    : "http://127.0.0.1:8000")
-).replace(/\/$/, "");
+const API_URL = "https://itops-ai.onrender.com";
 
 type Page = "dashboard" | "analysis" | "incidents" | "settings";
 
