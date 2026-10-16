@@ -1,6 +1,9 @@
 
 const API_URL = (
-  process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"
+  process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NODE_ENV === "production"
+    ? "https://itops-ai.onrender.com"
+    : "http://127.0.0.1:8000")
 ).replace(/\/$/, "");
 
 export type IncidentStatus =
@@ -51,7 +54,7 @@ async function request<T>(
     });
   } catch {
     throw new Error(
-      "Unable to connect to the backend. Check the API URL, server status, and CORS configuration."
+      `Unable to connect to the backend at ${API_URL}. Check the backend URL, server status, and CORS settings.`
     );
   }
 
@@ -59,9 +62,14 @@ async function request<T>(
     let message = `API error: ${response.status}`;
 
     try {
-      const error = await response.json();
+      const error: unknown = await response.json();
 
-      if (typeof error.detail === "string") {
+      if (
+        typeof error === "object" &&
+        error !== null &&
+        "detail" in error &&
+        typeof error.detail === "string"
+      ) {
         message = error.detail;
       }
     } catch {
@@ -71,7 +79,11 @@ async function request<T>(
     throw new Error(message);
   }
 
-  return response.json() as Promise<T>;
+  return (await response.json()) as T;
+}
+
+export async function getHealth(): Promise<unknown> {
+  return request<unknown>("/health");
 }
 
 export async function getIncidents(): Promise<Incident[]> {
