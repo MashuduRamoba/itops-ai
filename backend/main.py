@@ -18,15 +18,27 @@ from database import (
     save_ai_analysis,
 )
 
+# --------------------------------------------------
+# Logging
+# --------------------------------------------------
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("itops-ai")
 
+
+# --------------------------------------------------
+# Database initialization
+# --------------------------------------------------
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
     yield
 
+
+# --------------------------------------------------
+# FastAPI application
+# --------------------------------------------------
 
 app = FastAPI(
     title="ITOps AI API",
@@ -35,6 +47,11 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+
+# --------------------------------------------------
+# CORS configuration
+# --------------------------------------------------
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -42,28 +59,55 @@ app.add_middleware(
         "http://127.0.0.1:3000",
         "http://localhost:3001",
         "http://127.0.0.1:3001",
+        "https://itops-ai.vercel.app",
     ],
     allow_credentials=False,
-    allow_methods=["GET", "POST", "PATCH"],
+    allow_methods=["GET", "POST", "PATCH", "OPTIONS"],
     allow_headers=["Content-Type"],
 )
 
 
+# --------------------------------------------------
+# Request models
+# --------------------------------------------------
+
 class IncidentRequest(BaseModel):
-    description: str = Field(min_length=10, max_length=10000)
+    description: str = Field(
+        min_length=10,
+        max_length=10000,
+    )
 
 
 class CreateIncidentRequest(BaseModel):
-    title: str = Field(min_length=3, max_length=200)
-    description: str = Field(min_length=10, max_length=10000)
-    category: str = Field(default="General IT", max_length=100)
-    priority: Literal["Low", "Medium", "High", "Critical"] = "Medium"
+    title: str = Field(
+        min_length=3,
+        max_length=200,
+    )
+    description: str = Field(
+        min_length=10,
+        max_length=10000,
+    )
+    category: str = Field(
+        default="General IT",
+        max_length=100,
+    )
+    priority: Literal[
+        "Low", "Medium", "High", "Critical"
+    ] = "Medium"
 
 
 class UpdateIncidentRequest(BaseModel):
-    status: Literal["Open", "In Progress", "Resolved", "Closed"]
-    priority: Literal["Low", "Medium", "High", "Critical"]
+    status: Literal[
+        "Open", "In Progress", "Resolved", "Closed"
+    ]
+    priority: Literal[
+        "Low", "Medium", "High", "Critical"
+    ]
 
+
+# --------------------------------------------------
+# Health endpoint
+# --------------------------------------------------
 
 @app.get("/health")
 def health():
@@ -76,9 +120,15 @@ def health():
     }
 
 
+# --------------------------------------------------
+# Incident management
+# --------------------------------------------------
+
 @app.get("/api/incidents")
 def list_incidents():
-    return {"incidents": get_incidents()}
+    return {
+        "incidents": get_incidents()
+    }
 
 
 @app.post("/api/incidents", status_code=201)
@@ -89,6 +139,7 @@ def add_incident(request: CreateIncidentRequest):
         category=request.category,
         priority=request.priority,
     )
+
     return get_incident(incident_id)
 
 
@@ -124,6 +175,10 @@ def edit_incident(
 
     return get_incident(incident_id)
 
+
+# --------------------------------------------------
+# AI analysis
+# --------------------------------------------------
 
 async def run_ai_analysis(description: str) -> str:
     try:
@@ -161,8 +216,14 @@ async def run_ai_analysis(description: str) -> str:
 
 @app.post("/api/analyse")
 async def analyse(request: IncidentRequest):
-    answer = await run_ai_analysis(request.description)
-    return {"status": "success", "answer": answer}
+    answer = await run_ai_analysis(
+        request.description
+    )
+
+    return {
+        "status": "success",
+        "answer": answer,
+    }
 
 
 @app.post("/api/incidents/{incident_id}/analyse")
@@ -175,9 +236,14 @@ async def analyse_saved_incident(incident_id: int):
             detail="Incident not found.",
         )
 
-    answer = await run_ai_analysis(incident["description"])
+    answer = await run_ai_analysis(
+        incident["description"]
+    )
 
-    save_ai_analysis(incident_id, answer)
+    save_ai_analysis(
+        incident_id,
+        answer,
+    )
 
     return {
         "status": "success",
