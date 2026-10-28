@@ -1,6 +1,7 @@
 ![ITOps AI Banner](assets/itops-ai-banner.png)
 
-# ITOps AI
+# 🧠 ITOps AI
+
 <div align="center">
 
 ### Intelligent IT Operations Platform
@@ -24,7 +25,7 @@ An AI-powered full-stack platform for IT incident management, intelligent troubl
 
 ---
 
-## Γ£¿ Overview
+## ✨ Overview
 
 **ITOps AI** helps IT support professionals turn unstructured incident descriptions into actionable troubleshooting guidance.
 
@@ -32,23 +33,23 @@ Instead of manually researching every issue and writing ticket updates from scra
 
 Designed around real-world enterprise IT support workflows, with a focus on Microsoft 365, SharePoint Online, Microsoft Entra ID, and ServiceNow.
 
-## ΓÜí Core Features
+## ⚡ Core Features
 
-| ≡ƒºá AI Incident Analysis | ≡ƒÄ½ Incident Management |
+| 🧠 AI Incident Analysis | 🎫 Incident Management |
 |---|---|
 | Generate issue summaries, possible root causes, troubleshooting steps, and escalation recommendations. | Create, categorise, prioritise, update, and track IT incidents. |
 
-| ≡ƒô¥ ServiceNow Drafts | Γÿü∩╕Å Flexible AI Providers |
+| 📝 ServiceNow Drafts | ☁️ Flexible AI Providers |
 |---|---|
 | Produce professional ticket updates that support consistent incident documentation. | Use Groq Cloud AI in production or Ollama for local development. |
 
-## ≡ƒûÑ∩╕Å Application Preview
+## 🖥️ Application Preview
 
 > Screenshots of the live dashboard, AI Analysis, and Incident Management interfaces will be added here.
 
-**[Launch the live application ΓåÆ](https://itops-ai.vercel.app)**
+**[Launch the live application →](https://itops-ai.vercel.app)**
 
-## ≡ƒÅù∩╕Å System Architecture
+## 🏗️ System Architecture
 
 ```mermaid
 flowchart TD
@@ -62,12 +63,12 @@ flowchart TD
 
 **Deployment architecture**
 
-- **Vercel** ΓÇö Hosts the Next.js frontend.
-- **Render** ΓÇö Hosts the Python FastAPI backend.
-- **Groq** ΓÇö Provides cloud AI inference.
-- **SQLite** ΓÇö Stores incident records and saved analysis.
+- **Vercel** — Hosts the Next.js frontend.
+- **Render** — Hosts the Python FastAPI backend.
+- **Groq** — Provides cloud AI inference.
+- **SQLite** — Stores incident records and saved analysis.
 
-## ≡ƒ¢á∩╕Å Technology Stack
+## 🛠️ Technology Stack
 
 | Layer | Technology |
 |---|---|
@@ -78,27 +79,27 @@ flowchart TD
 | Deployment | Vercel, Render |
 | Version Control | Git, GitHub |
 
-## ≡ƒôé Project Structure
+## 📂 Project Structure
 
 ```text
 itops-ai/
-Γö£ΓöÇΓöÇ backend/
-Γöé   Γö£ΓöÇΓöÇ agent.py
-Γöé   Γö£ΓöÇΓöÇ main.py
-Γöé   Γö£ΓöÇΓöÇ database.py
-Γöé   ΓööΓöÇΓöÇ requirements.txt
-Γö£ΓöÇΓöÇ frontend/
-Γöé   Γö£ΓöÇΓöÇ src/
-Γöé   Γöé   Γö£ΓöÇΓöÇ app/
-Γöé   Γöé   ΓööΓöÇΓöÇ lib/
-Γöé   ΓööΓöÇΓöÇ package.json
-Γö£ΓöÇΓöÇ .github/
-Γöé   ΓööΓöÇΓöÇ workflows/
-Γö£ΓöÇΓöÇ .gitignore
-ΓööΓöÇΓöÇ README.md
+├── backend/
+│   ├── agent.py
+│   ├── main.py
+│   ├── database.py
+│   └── requirements.txt
+├── frontend/
+│   ├── src/
+│   │   ├── app/
+│   │   └── lib/
+│   └── package.json
+├── .github/
+│   └── workflows/
+├── .gitignore
+└── README.md
 ```
 
-## ≡ƒÜÇ Getting Started
+## 🚀 Getting Started
 
 ### 1. Clone the repository
 
@@ -185,7 +186,7 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-## ≡ƒöî REST API
+## 🔌 REST API
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -197,7 +198,7 @@ Open `http://localhost:3000`.
 | POST | `/api/analyse` | Generate AI analysis |
 | POST | `/api/incidents/{id}/analyse` | Analyse a saved incident |
 
-## ≡ƒù║∩╕Å Roadmap
+## 🗺️ Roadmap
 
 - [x] Full-stack frontend and backend
 - [x] Incident creation and tracking
@@ -212,7 +213,7 @@ Open `http://localhost:3000`.
 - [ ] Microsoft 365 knowledge base
 - [ ] Incident analytics dashboard
 
-## ≡ƒöÉ Security and Responsible AI
+## 🔐 Security and Responsible AI
 
 ITOps AI is a portfolio and development project, not a production-ready enterprise support system.
 
@@ -220,11 +221,11 @@ AI-generated recommendations require human review. The application does not inde
 
 Do not submit confidential company information, passwords, MFA codes, or sensitive personal data to the public demo. Production-grade authentication and durable database storage are future improvements.
 
-## ≡ƒæ¿ΓÇì≡ƒÆ╗ Developer
+## 👨‍💻 Developer
 
 **Mashudu Ramoba**
 
-Software Development ΓÇó Cloud Computing ΓÇó IT Automation ΓÇó Microsoft 365
+Software Development • Cloud Computing • IT Automation • Microsoft 365
 
 Building practical solutions at the intersection of enterprise IT operations, cloud infrastructure, and artificial intelligence.
 
@@ -232,11 +233,10 @@ Building practical solutions at the intersection of enterprise IT operations, cl
 
 <div align="center">
 
-### Γ¡É ITOps AI
+### ⭐ ITOps AI
 
 **Making IT support smarter, one incident at a time.**
 
-[Live Application](https://itops-ai.vercel.app) ┬╖ [Source Code](https://github.com/MashuduRamoba/itops-ai)
+[Live Application](https://itops-ai.vercel.app) · [Source Code](https://github.com/MashuduRamoba/itops-ai)
 
 </div>
-
