@@ -1,7 +1,6 @@
-﻿![ITOps AI Banner](assets/itops-ai-banner.png)
+![ITOps AI Banner](assets/itops-ai-banner.png)
 
-# ≡ƒºá ITOps AI
-
+# ITOps AI
 <div align="center">
 
 ### Intelligent IT Operations Platform
